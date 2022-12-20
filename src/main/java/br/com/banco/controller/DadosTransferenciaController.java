@@ -1,11 +1,13 @@
 package br.com.banco.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,15 @@ public class DadosTransferenciaController {
 	public ResponseEntity<List<Transferencia>> buscarTodasTransferencias() {
 		
 		List<Transferencia> transferencias = service.buscarTodasTranferencias();
+		
+		return ResponseEntity.status(HttpStatus.OK).body(transferencias);
+		
+	}
+	
+	@GetMapping(path = "/conta/{id}")
+	public ResponseEntity<Optional<Transferencia>> buscarTransferenciasPorId(@PathVariable Long id) {
+		
+		Optional<Transferencia> transferencias = service.buscarPorId(id);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(transferencias);
 		
