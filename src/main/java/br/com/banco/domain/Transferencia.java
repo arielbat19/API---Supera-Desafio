@@ -3,6 +3,7 @@ package br.com.banco.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +25,10 @@ public class Transferencia implements Serializable{
 	private Date data_transferencia;
 	private Double valor;
 	private String tipo;
-	private String nome_operador_transferencias;
+	@Column(name = "nome_operador_transacao")
+	private String nome;
 	private String conta_id;
+	private String nome_operador_transferencias;
 	
 	@Override
 	public int hashCode() {
@@ -34,6 +37,7 @@ public class Transferencia implements Serializable{
 		result = prime * result + ((conta_id == null) ? 0 : conta_id.hashCode());
 		result = prime * result + ((data_transferencia == null) ? 0 : data_transferencia.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result
 				+ ((nome_operador_transferencias == null) ? 0 : nome_operador_transferencias.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
@@ -65,6 +69,11 @@ public class Transferencia implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
 		if (nome_operador_transferencias == null) {
 			if (other.nome_operador_transferencias != null)
 				return false;
@@ -82,5 +91,7 @@ public class Transferencia implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 	
 }

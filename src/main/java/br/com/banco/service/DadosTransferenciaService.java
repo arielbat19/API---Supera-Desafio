@@ -23,4 +23,12 @@ public class DadosTransferenciaService {
 		return repository.findById(id);
 	}
 	
+	public Optional<Transferencia> buscarPorContaId(Long id) {
+		return repository.findById(id);
+	}
+
+	public Transferencia buscarPorNome(String nome) {
+		return repository.findByNome(nome);
+	}
+	
 }

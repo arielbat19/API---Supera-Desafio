@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +35,15 @@ public class DadosTransferenciaController {
 	public ResponseEntity<Optional<Transferencia>> buscarTransferenciasPorId(@PathVariable Long id) {
 		
 		Optional<Transferencia> transferencias = service.buscarPorId(id);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(transferencias);
+		
+	}
+	
+	@GetMapping("/conta")
+	public ResponseEntity<Transferencia> buscarTransferenciasPorNome(@RequestBody Transferencia request) {
+		
+		Transferencia transferencias = service.buscarPorNome(request.getNome());
 		
 		return ResponseEntity.status(HttpStatus.OK).body(transferencias);
 		
