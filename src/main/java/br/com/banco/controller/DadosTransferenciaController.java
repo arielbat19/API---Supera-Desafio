@@ -51,4 +51,11 @@ public class DadosTransferenciaController {
 		
 	}
 	
+	@GetMapping("/buscar")
+	public ResponseEntity<List<Transferencia>> buscarTransferenciasPorDataENome(@RequestBody Filtro request) {
+		List<Transferencia> transferencias = service.buscarPorDataENome(request.getDataInicio(), request.getDataFim(), request.getNome());
+		return ResponseEntity.status(HttpStatus.OK).body(transferencias);
+		
+	}
+	
 }

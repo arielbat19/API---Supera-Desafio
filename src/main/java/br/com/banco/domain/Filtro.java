@@ -11,5 +11,6 @@ public class Filtro {
 	
 	private Timestamp dataInicio;
 	private Timestamp dataFim;
+	private String nome;
 
 }

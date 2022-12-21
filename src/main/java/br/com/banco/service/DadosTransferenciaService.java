@@ -1,6 +1,7 @@
 package br.com.banco.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,18 @@ public class DadosTransferenciaService {
 
 	public List<Transferencia>buscarPorData(Timestamp start, Timestamp end) {
 		return repository.findByDataBetween(start, end);
+	}
+
+	public List<Transferencia> buscarPorDataENome(Timestamp start, Timestamp end, String nome) {
+		List<Transferencia> transferencia = repository.findByDataBetween(start, end);
+		List<Transferencia> response = new ArrayList<Transferencia>();
+		for (int i = 0; i < transferencia.size(); i++) {
+			if (transferencia.get(i).getNome().equalsIgnoreCase(nome)) {
+				response.add(transferencia.get(i));
+			}
+			
+		}
+		return response;
 	}
 	
 }
