@@ -1,5 +1,6 @@
 package br.com.banco.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,10 @@ public class DadosTransferenciaService {
 
 	public Transferencia buscarPorNome(String nome) {
 		return repository.findByNome(nome);
+	}
+
+	public List<Transferencia>buscarPorData(Timestamp start, Timestamp end) {
+		return repository.findByDataBetween(start, end);
 	}
 	
 }

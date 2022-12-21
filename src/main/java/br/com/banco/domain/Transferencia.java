@@ -1,7 +1,7 @@
 package br.com.banco.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,8 @@ public class Transferencia implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Date data_transferencia;
+	@Column(name = "data_transferencia")
+	private Timestamp data;
 	private Double valor;
 	private String tipo;
 	@Column(name = "nome_operador_transacao")
@@ -35,7 +36,7 @@ public class Transferencia implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((conta_id == null) ? 0 : conta_id.hashCode());
-		result = prime * result + ((data_transferencia == null) ? 0 : data_transferencia.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result
@@ -59,10 +60,10 @@ public class Transferencia implements Serializable{
 				return false;
 		} else if (!conta_id.equals(other.conta_id))
 			return false;
-		if (data_transferencia == null) {
-			if (other.data_transferencia != null)
+		if (data == null) {
+			if (other.data != null)
 				return false;
-		} else if (!data_transferencia.equals(other.data_transferencia))
+		} else if (!data.equals(other.data))
 			return false;
 		if (id == null) {
 			if (other.id != null)
